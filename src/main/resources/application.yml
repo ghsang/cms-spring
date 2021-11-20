@@ -1,0 +1,50 @@
+server.error.include-binding-errors: on-param
+
+management.endpoints.web.exposure.include:
+  - health
+  - metrics
+
+management.health.circuitbreakers.enabled: true
+management.health.bulkhead.enabled: true
+management.endpoint.health.show-details: always
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+  instances:
+    eventBus:
+      baseConfig: default
+
+resilience4j.ratelimiter:
+  configs:
+    default:
+      registerHealthIndicator: true
+
+  instances:
+    eventBus:
+      baseConfig: default
+
+#resilience4j.bulkhead:
+#  configs:
+#    default:
+
+#  instances:
+#    eventBus:
+#      baseConfig: default
+
+#resilience4j.retry:
+#  configs:
+#    default:
+
+#  instances:
+#    eventBus:
+#      baseConfig: default
+
+#resilience4j.timelimiter:
+#  configs:
+#    default:
+
+#  instances:
+#    eventBus:
+#      baseConfig: default
